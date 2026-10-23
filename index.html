@@ -1,509 +1,526 @@
 
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Life Below Water | SDG 14</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<title>Life Below Water | SDG 14</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f1fbfc;
-      color: #073b4c;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 22px 8%;
-      background: #023e5a;
-      color: white;
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4fbff;
+  color: #083b50;
+}
 
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 8%;
+  background: #052d46;
+  color: white;
+}
 
-    .logo span {
-      color: #55e6d0;
-    }
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
-      font-size: 14px;
-    }
+.logo span {
+  color: #52e5d0;
+}
 
-    nav a:hover {
-      color: #55e6d0;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 14px;
+}
 
-    .hero {
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 10%;
-      color: white;
-      background:
-        linear-gradient(90deg, rgba(0,30,55,.85), rgba(0,80,110,.25)),
-        url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2000&q=90')
-        center/cover;
-    }
+nav a:hover {
+  color: #52e5d0;
+}
 
-    .hero-content {
-      max-width: 700px;
-      animation: fadeIn 1.2s ease;
-    }
+.hero {
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 10%;
+  color: white;
+  background:
+    linear-gradient(90deg, #03283ee8, #03283e35),
+    url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2000&q=90')
+    center/cover;
+}
 
-    .tag {
-      display: inline-block;
-      background: #50e3c2;
-      color: #003849;
-      padding: 9px 17px;
-      border-radius: 30px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 24px;
-    }
+.hero-content {
+  max-width: 700px;
+  animation: appear 1s ease;
+}
 
-    h1 {
-      font-size: clamp(45px, 7vw, 85px);
-      line-height: 1.05;
-      margin-bottom: 25px;
-    }
+.tag {
+  display: inline-block;
+  background: #52e5d0;
+  color: #052d46;
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
 
-    h1 span {
-      color: #64f0d2;
-    }
+h1 {
+  font-size: clamp(48px, 8vw, 88px);
+  line-height: 1.05;
+  margin-bottom: 25px;
+}
 
-    .hero p {
-      font-size: 17px;
-      line-height: 1.8;
-      max-width: 580px;
-      color: #e1f8ff;
-      margin-bottom: 32px;
-    }
+h1 span {
+  color: #52e5d0;
+}
 
-    .btn {
-      display: inline-block;
-      background: #54e4c5;
-      color: #003849;
-      padding: 15px 28px;
-      border-radius: 35px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: .3s;
-    }
+.hero p {
+  max-width: 570px;
+  line-height: 1.9;
+  font-size: 16px;
+  color: #e4f8ff;
+  margin-bottom: 30px;
+}
 
-    .btn:hover {
-      background: white;
-      transform: translateY(-4px);
-    }
+.btn {
+  display: inline-block;
+  padding: 14px 27px;
+  background: #52e5d0;
+  color: #052d46;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: .3s;
+}
 
-    section {
-      padding: 90px 9%;
-    }
+.btn:hover {
+  background: white;
+  transform: translateY(-4px);
+}
 
-    .section-title {
-      text-align: center;
-      margin-bottom: 45px;
-    }
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 40px 9%;
+}
 
-    .section-title h2 {
-      font-size: clamp(30px, 4vw, 45px);
-      margin-bottom: 14px;
-    }
+.stat {
+  background: white;
+  padding: 30px 20px;
+  text-align: center;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px #00384b10;
+}
 
-    .section-title p {
-      color: #527583;
-      max-width: 650px;
-      margin: auto;
-      line-height: 1.8;
-    }
+.stat h2 {
+  font-size: 38px;
+  color: #00a99d;
+  margin-bottom: 8px;
+}
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: -45px;
-      position: relative;
-      padding: 0 9%;
-    }
+.stat p {
+  font-size: 13px;
+  color: #607c88;
+}
 
-    .stat {
-      background: white;
-      padding: 30px 20px;
-      text-align: center;
-      border-radius: 18px;
-      box-shadow: 0 10px 35px #00384912;
-    }
+section {
+  padding: 85px 9%;
+}
 
-    .stat h3 {
-      font-size: 38px;
-      color: #00a99d;
-    }
+.section-title {
+  text-align: center;
+  margin-bottom: 45px;
+}
 
-    .stat p {
-      color: #527583;
-      font-size: 13px;
-    }
+.section-title h2 {
+  font-size: clamp(30px, 4vw, 43px);
+  margin-bottom: 15px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
+.section-title p {
+  color: #607c88;
+  max-width: 620px;
+  margin: auto;
+  line-height: 1.8;
+}
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 35px #00384912;
-      transition: .35s;
-    }
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+  align-items: center;
+  background: #e0f8f6;
+}
 
-    .card:hover {
-      transform: translateY(-9px);
-      box-shadow: 0 18px 40px #00384925;
-    }
+.about img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+  border-radius: 25px;
+  box-shadow: 14px 14px 0 #52d9c7;
+}
 
-    .card img {
-      width: 100%;
-      height: 230px;
-      object-fit: cover;
-      display: block;
-    }
+.about h2 {
+  font-size: clamp(30px, 4vw, 42px);
+  margin-bottom: 22px;
+}
 
-    .card-content {
-      padding: 25px;
-    }
+.about p {
+  color: #50727f;
+  line-height: 1.9;
+  margin-bottom: 20px;
+}
 
-    .card h3 {
-      font-size: 21px;
-      margin-bottom: 12px;
-    }
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
 
-    .card p {
-      color: #527583;
-      font-size: 14px;
-      line-height: 1.8;
-    }
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 35px #00384b12;
+  transition: .3s;
+}
 
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 55px;
-      background: #dff7f5;
-    }
+.card:hover {
+  transform: translateY(-8px);
+}
 
-    .about img {
-      width: 100%;
-      height: 440px;
-      object-fit: cover;
-      border-radius: 25px;
-      box-shadow: 15px 15px 0 #58d9c6;
-    }
+.card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
 
-    .about h2 {
-      font-size: clamp(30px, 4vw, 43px);
-      margin-bottom: 20px;
-    }
+.card-content {
+  padding: 25px;
+}
 
-    .about p {
-      line-height: 1.9;
-      color: #426b77;
-      margin-bottom: 20px;
-    }
+.card h3 {
+  font-size: 19px;
+  margin-bottom: 12px;
+}
 
-    .actions {
-      background: #023e5a;
-      color: white;
-      text-align: center;
-    }
+.card p {
+  color: #607c88;
+  font-size: 14px;
+  line-height: 1.8;
+}
 
-    .actions .section-title p {
-      color: #c6e7ed;
-    }
+.actions {
+  background: #052d46;
+  color: white;
+}
 
-    .action-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 40px;
-      text-align: left;
-    }
+.actions .section-title p {
+  color: #c5e3ec;
+}
 
-    .action {
-      padding: 28px;
-      border: 1px solid #ffffff30;
-      border-radius: 18px;
-      background: #ffffff09;
-    }
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
 
-    .action .emoji {
-      font-size: 35px;
-      margin-bottom: 15px;
-    }
+.action {
+  padding: 30px;
+  background: #ffffff0d;
+  border: 1px solid #ffffff25;
+  border-radius: 20px;
+  transition: .3s;
+}
 
-    .action h3 {
-      margin-bottom: 10px;
-    }
+.action:hover {
+  background: #ffffff18;
+  transform: translateY(-5px);
+}
 
-    .action p {
-      color: #c6e7ed;
-      line-height: 1.8;
-      font-size: 14px;
-    }
+.emoji {
+  font-size: 38px;
+  margin-bottom: 18px;
+}
 
-    .quote {
-      text-align: center;
-      padding: 100px 12%;
-      background:
-        linear-gradient(#004a6380, #004a6380),
-        url('https://images.unsplash.com/photo-1518467166778-b88f373ffec7?auto=format&fit=crop&w=1800&q=85')
-        center/cover;
-      color: white;
-    }
+.action h3 {
+  margin-bottom: 12px;
+}
 
-    .quote h2 {
-      font-size: clamp(30px, 5vw, 55px);
-      max-width: 900px;
-      margin: auto auto 20px;
-    }
+.action p {
+  color: #c5e3ec;
+  font-size: 14px;
+  line-height: 1.8;
+}
 
-    .quote p {
-      font-size: 16px;
-      color: #d7fffa;
-    }
+.quote {
+  text-align: center;
+  color: white;
+  padding: 100px 10%;
+  background:
+    linear-gradient(#00384b99, #00384bcc),
+    url('https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+}
 
-    footer {
-      background: #012d42;
-      color: white;
-      padding: 35px 9%;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      font-size: 13px;
-    }
+.quote h2 {
+  max-width: 850px;
+  margin: auto auto 20px;
+  font-size: clamp(30px, 5vw, 52px);
+}
 
-    footer span {
-      color: #55e6d0;
-    }
+.quote p {
+  color: #d2fff7;
+}
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(25px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+footer {
+  background: #021f32;
+  color: white;
+  text-align: center;
+  padding: 30px 8%;
+  font-size: 13px;
+  line-height: 2;
+}
 
-    @media (max-width: 800px) {
-      nav {
-        flex-direction: column;
-        gap: 15px;
-      }
+footer span {
+  color: #52e5d0;
+}
 
-      nav a {
-        margin: 0 7px;
-      }
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-      .hero {
-        min-height: 75vh;
-        padding: 65px 7%;
-      }
+@media (max-width: 800px) {
+  nav {
+    flex-direction: column;
+    gap: 15px;
+  }
 
-      .stats, .cards, .action-list, .about {
-        grid-template-columns: 1fr;
-      }
+  nav a {
+    margin: 0 8px;
+  }
 
-      .stats {
-        margin-top: 25px;
-      }
+  .hero {
+    min-height: 75vh;
+    padding: 65px 7%;
+  }
 
-      section {
-        padding: 65px 7%;
-      }
+  .stats,
+  .cards,
+  .about,
+  .action-grid {
+    grid-template-columns: 1fr;
+  }
 
-      .about img {
-        height: 300px;
-      }
-    }
-  </style>
+  section {
+    padding: 65px 7%;
+  }
+
+  .about img {
+    height: 300px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <nav>
-    <div class="logo">BLUE<span>PLANET.</span></div>
-    <div>
-      <a href="#about">O cilju</a>
-      <a href="#threats">Težave</a>
-      <a href="#actions">Rešitve</a>
-    </div>
-  </nav>
+<nav>
+  <div class="logo">BLUE<span>PLANET.</span></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#problems">Problems</a>
+    <a href="#help">How to help</a>
+  </div>
+</nav>
 
-  <header class="hero">
-    <div class="hero-content">
-      <div class="tag">UN SUSTAINABLE DEVELOPMENT GOAL 14</div>
-      <h1>LIFE BELOW <span>WATER.</span></h1>
-      <p>
-        Ocean ni samo voda. Je dom milijonom živih bitij, vir življenja
-        in eden najpomembnejših delov našega planeta.
-        Zaščitimo ga, preden bo prepozno.
-      </p>
-      <a href="#about" class="btn">Odkrij naš ocean ↓</a>
-    </div>
-  </header>
+<header class="hero">
+  <div class="hero-content">
+    <div class="tag">SDG 14 · LIFE BELOW WATER</div>
 
-  <div class="stats">
-    <div class="stat">
-      <h3>71%</h3>
-      <p>Zemljine površine pokrivajo oceani.</p>
-    </div>
-    <div class="stat">
-      <h3>50%</h3>
-      <p>Približno toliko kisika proizvedejo morski organizmi in drugi oceanski procesi.</p>
-    </div>
-    <div class="stat">
-      <h3>1 cilj</h3>
-      <p>Zaščititi življenje pod vodo za prihodnje generacije.</p>
-    </div>
+    <h1>OUR OCEAN.<br>
+    <span>OUR FUTURE.</span></h1>
+
+    <p>
+      The ocean is home to millions of animals and plants.
+      It gives us food, helps our planet and makes life possible.
+      Let's protect it before it's too late.
+    </p>
+
+    <a href="#about" class="btn">Explore the ocean ↓</a>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stat">
+    <h2>71%</h2>
+    <p>of Earth's surface is covered by water.</p>
   </div>
 
-  <section class="about" id="about">
-    <div>
-      <h2>Zakaj je ocean tako pomemben?</h2>
-      <p>
-        Cilj trajnostnega razvoja SDG 14 si prizadeva ohranjati in
-        trajnostno uporabljati oceane, morja ter morske vire.
-      </p>
-      <p>
-        Oceani uravnavajo podnebje, podpirajo prehranske sisteme in
-        zagotavljajo življenjski prostor neverjetni raznolikosti živih bitij.
-        Zdrav ocean pomeni bolj zdravo prihodnost za vse nas.
-      </p>
-      <a href="#actions" class="btn">Kako lahko pomagamo?</a>
-    </div>
+  <div class="stat">
+    <h2>3 billion</h2>
+    <p>people depend on the ocean for their living.</p>
+  </div>
 
-    <img
-      src="https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=1000&q=85"
-      alt="Barvit koralni greben in morsko življenje"
-    >
-  </section>
+  <div class="stat">
+    <h2>1 ocean</h2>
+    <p>One planet. One chance to protect it.</p>
+  </div>
+</div>
 
-  <section id="threats">
-    <div class="section-title">
-      <h2>Ocean potrebuje našo pomoč</h2>
-      <p>
-        Človeške dejavnosti ogrožajo občutljive morske ekosisteme.
-        Spoznajmo tri velike izzive, ki jih moramo rešiti.
-      </p>
-    </div>
+<section class="about" id="about">
+  <div>
+    <h2>Why does the ocean matter?</h2>
 
-    <div class="cards">
-      <article class="card">
-        <img
-          src="https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=900&q=85"
-          alt="Plastični odpadki, ki onesnažujejo okolje"
-        >
-        <div class="card-content">
-          <h3>🧴 Plastično onesnaževanje</h3>
-          <p>
-            Plastika v morju poškoduje živali, onesnažuje habitate
-            in se razgrajuje v drobne delce, ki vstopajo v prehranjevalne verige.
-          </p>
-        </div>
-      </article>
+    <p>
+      SDG 14 is one of the United Nations' goals.
+      Its mission is simple: protect life under water.
+    </p>
 
-      <article class="card">
-        <img
-          src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=85"
-          alt="Podvodni svet in morski organizmi"
-        >
-        <div class="card-content">
-          <h3>🐠 Izguba biodiverzitete</h3>
-          <p>
-            Prekomerni ribolov, uničevanje habitatov in segrevanje morja
-            ogrožajo številne vrste ter ravnovesje morskih ekosistemov.
-          </p>
-        </div>
-      </article>
+    <p>
+      The ocean gives us food, helps control the weather
+      and is home to amazing creatures. But pollution,
+      plastic and climate change are putting it in danger.
+    </p>
 
-      <article class="card">
-        <img
-          src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=85"
-          alt="Naravna pokrajina, ki ponazarja podnebni sistem"
-        >
-        <div class="card-content">
-          <h3>🌡️ Podnebne spremembe</h3>
-          <p>
-            Toplejši in bolj kisli oceani povzročajo beljenje koral,
-            spreminjajo morske habitate in ogrožajo življenje pod gladino.
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
+    <p>
+      Even small actions can make a big difference.
+      We all have a part to play in protecting our blue planet.
+    </p>
 
-  <section class="quote">
-    <h2>»Brez modrega planeta ni zelene prihodnosti.«</h2>
-    <p>Vsako dejanje šteje. Vsaka sprememba se začne pri nas.</p>
-  </section>
+    <a href="#help" class="btn">Make a difference</a>
+  </div>
 
-  <section class="actions" id="actions">
-    <div class="section-title">
-      <h2>Postani del rešitve</h2>
-      <p>
-        Za zaščito oceanov ne potrebujemo supermoči.
-        Potrebujemo le boljše vsakodnevne odločitve.
-      </p>
-    </div>
+  <img
+    src="https://images.unsplash.com/photo-1546026423-cc4642628d2b?auto=format&fit=crop&w=1000&q=85"
+    alt="Beautiful underwater world with coral and fish">
+</section>
 
-    <div class="action-list">
-      <div class="action">
-        <div class="emoji">♻️</div>
-        <h3>Zmanjšaj plastiko</h3>
-        <p>Uporabljaj steklenico za večkratno uporabo, vrečke iz blaga in izdelke z manj embalaže.</p>
-      </div>
+<section id="problems">
+  <div class="section-title">
+    <h2>What is hurting our ocean?</h2>
+    <p>
+      Our ocean faces many problems, but we can help
+      by understanding them and changing our habits.
+    </p>
+  </div>
 
-      <div class="action">
-        <div class="emoji">🌊</div>
-        <h3>Varuj naravo</h3>
-        <p>Ne puščaj odpadkov na plažah, sodeluj v čistilnih akcijah in spoštuj morske živali.</p>
-      </div>
-
-      <div class="action">
-        <div class="emoji">🐟</div>
-        <h3>Izbiraj odgovorno</h3>
-        <p>Podpiraj trajnostni ribolov in širi znanje o pomenu zdravih oceanov.</p>
+  <div class="cards">
+    <div class="card">
+      <img
+        src="https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?auto=format&fit=crop&w=900&q=85"
+        alt="Plastic waste">
+      <div class="card-content">
+        <h3>🧴 Plastic Pollution</h3>
+        <p>
+          Plastic bags and bottles can end up in the sea.
+          Sea animals may eat them or get trapped in them.
+        </p>
       </div>
     </div>
-  </section>
 
-  <footer>
-    <div><strong>BLUE<span>PLANET.</span></strong> — Protect what keeps us alive.</div>
-    <div>SDG 14 · Life Below Water · <span>Naša prihodnost je modra.</span></div>
-  </footer>
+    <div class="card">
+      <img
+        src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=85"
+        alt="Marine life">
+      <div class="card-content">
+        <h3>🐠 Animals in Danger</h3>
+        <p>
+          Many sea animals are losing their homes.
+          Too much fishing and dirty water make life harder for them.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img
+        src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=900&q=85"
+        alt="Ocean waves">
+      <div class="card-content">
+        <h3>🌡️ A Warming Ocean</h3>
+        <p>
+          The ocean is getting warmer. This can harm coral reefs
+          and make it harder for some sea animals to survive.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quote">
+  <h2>"There is no Planet B. Protect our blue planet."</h2>
+  <p>Small actions today. A better ocean tomorrow. 🌊</p>
+</div>
+
+<section class="actions" id="help">
+  <div class="section-title">
+    <h2>How can YOU help?</h2>
+    <p>
+      You don't need to do something huge.
+      Simple daily choices can help protect the ocean.
+    </p>
+  </div>
+
+  <div class="action-grid">
+    <div class="action">
+      <div class="emoji">♻️</div>
+      <h3>Use Less Plastic</h3>
+      <p>
+        Bring a reusable water bottle and shopping bag.
+        Avoid single-use plastic whenever possible.
+      </p>
+    </div>
+
+    <div class="action">
+      <div class="emoji">🏖️</div>
+      <h3>Keep Beaches Clean</h3>
+      <p>
+        Never leave rubbish on the beach.
+        Pick up litter when it is safe to do so.
+      </p>
+    </div>
+
+    <div class="action">
+      <div class="emoji">🐬</div>
+      <h3>Spread the Word</h3>
+      <p>
+        Tell your friends why the ocean matters.
+        Share ideas and inspire others to take action.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">BLUE<span>PLANET.</span></div>
+  <p>SDG 14: Life Below Water</p>
+  <p>Protect the ocean. Protect our future. 🌊</p>
+</footer>
 
 </body>
 </html>
