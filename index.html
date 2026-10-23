@@ -1,11 +1,356 @@
+
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Student COIL SDG interactive gallery"><title>Our SDG Story | COIL 2026</title><link rel="stylesheet" href="style.css"></head>
-<body><a class="skip" href="#main">Skip to content</a><header class="nav"><a class="brand" href="#home"><span class="brand-mark">✳</span> COIL<span class="brand-light"> / SDG LAB</span></a><button class="menu-toggle" aria-expanded="false" aria-controls="navlinks">☰ Menu</button><nav id="navlinks" aria-label="Main navigation"><a href="#problem">The Problem</a><a href="#gallery">Gallery</a><a href="#solutions">Take Action</a><a href="#journey">Our Journey</a><a href="#team">Our Team</a></nav></header>
-<main id="main"><section class="hero" id="home"><div class="hero-inner"><span class="eyebrow">COIL PROJECT 2026 · STUDENT SHOWCASE</span><div class="sdg-chip">SDG 12 <span>Responsible Consumption & Production</span></div><h1>Small actions.<br><em>Big impact.</em></h1><p class="lead">How can we make technology last longer and create less electronic waste? Explore our story, photos and ideas.</p><div class="hero-actions"><a class="btn btn-light" href="#gallery">Explore the gallery ↗</a><a class="btn btn-outline" href="#solutions">Try our interactive quiz →</a></div><p class="hero-hint">✎ REPLACE: title, SDG number, introduction and background photo</p></div><div class="hero-art" aria-hidden="true"><span class="art-orbit">12</span><span class="art-label">RETHINK<br>REUSE<br>REPAIR</span></div></section>
-<section class="section intro" id="problem"><div class="section-heading"><div><span class="kicker">01 / UNDERSTAND</span><h2>The problem <span class="accent">we see.</span></h2></div><p>Introduce one specific challenge related to your chosen SDG. Explain why it matters and whom it affects.</p></div><div class="problem-grid"><article class="problem-main"><span class="small-tag">OUR CHALLENGE</span><h3>Electronic waste is growing.</h3><p>Phones, laptops and other devices are often replaced before the end of their useful life. Repairing and reusing electronics can help reduce waste and save resources.</p><p class="hint">✎ REPLACE: Write 3–5 sentences about your own researched problem. Add a reliable source for factual claims.</p><a class="text-link" href="https://sdgs.un.org/goals/goal12" target="_blank" rel="noopener noreferrer">Learn more about SDG 12 ↗</a></article><aside class="fact-card"><div class="fact-icon">↺</div><h3>Think before you replace.</h3><p>Could this device be repaired, shared, donated or recycled responsibly?</p><span class="fact-bottom">YOUR KEY MESSAGE GOES HERE</span></aside></div></section>
-<section class="section gallery-section" id="gallery"><div class="section-heading"><div><span class="kicker">02 / DOCUMENT</span><h2>Through <span class="accent">our lens.</span></h2></div><p>Replace these sample illustrations with your own edited photographs. Minimum: six original photographs per student.</p></div><div class="filters" role="group" aria-label="Filter photographs"><button class="filter active" data-filter="all" aria-pressed="true">All photos</button><button class="filter" data-filter="challenge" aria-pressed="false">The challenge</button><button class="filter" data-filter="solutions" aria-pressed="false">Solutions</button><button class="filter" data-filter="behind" aria-pressed="false">Behind the scenes</button></div><div class="photo-grid" id="photo-grid"></div><p class="hint gallery-hint">✎ REPLACE: Add at least 12 own photos in <code>assets/images/</code>, then update <code>gallery-data.js</code>. Click a photo to open it.</p></section>
-<section class="section action-section" id="solutions"><div class="section-heading"><div><span class="kicker">03 / ACT</span><h2>Ideas into <span class="accent">action.</span></h2></div><p>Choose at least one interactive element: a quiz, survey, game, calculator or your own mini-app. This template includes two examples.</p></div><div class="action-grid"><article class="interactive-card"><span class="small-tag">INTERACTIVE QUIZ</span><h3>What would you do?</h3><p>Choose an answer and receive instant feedback.</p><div id="quiz" class="quiz"><div class="quiz-meta"><span id="quiz-progress">Question 1 of 3</span><span id="quiz-score">Score: 0</span></div><div class="progress-track"><div id="quiz-bar"></div></div><h4 id="quiz-question"></h4><div id="quiz-options" class="quiz-options"></div><p id="quiz-feedback" class="feedback" aria-live="polite"></p><button id="quiz-next" class="btn btn-dark" hidden>Next question →</button><div id="quiz-finish" hidden><h4 id="quiz-result"></h4><button id="quiz-restart" class="btn btn-dark">Try again ↻</button></div></div></article><article class="interactive-card survey-card"><span class="small-tag">INSTANT SURVEY</span><h3>What is your first step?</h3><p>Vote to see an immediate chart of the responses <strong>in this browser session</strong>.</p><fieldset id="poll"><legend>How would you reduce electronic waste?</legend><label><input type="radio" name="poll" value="Repair"> Repair a device</label><label><input type="radio" name="poll" value="Donate"> Donate old electronics</label><label><input type="radio" name="poll" value="Recycle"> Recycle responsibly</label><button id="poll-vote" class="btn btn-dark" type="button">Submit my answer</button></fieldset><div id="poll-results" hidden aria-live="polite"><p class="results-note">Demo results (saved only in your browser)</p><div id="poll-bars"></div><button id="poll-reset" class="text-button" type="button">Reset demo votes</button></div><p class="hint">✎ OPTIONAL: For results shared by all visitors, connect a database/backend. GitHub Pages alone does not store shared survey responses.</p></article></div><div class="tips"><h3>Three actions you can take today</h3><div class="tip-grid"><div><span>01</span><h4>Repair</h4><p>Check whether your device can be fixed before buying a new one.</p></div><div><span>02</span><h4>Reuse</h4><p>Donate or repurpose electronics that still work.</p></div><div><span>03</span><h4>Recycle</h4><p>Take unusable electronics to an appropriate collection point.</p></div></div><p class="hint">✎ REPLACE: These tips with solutions related to your chosen SDG.</p></div></section>
-<section class="section journey-section" id="journey"><div class="section-heading"><div><span class="kicker">04 / CREATE</span><h2>Our <span class="accent">journey.</span></h2></div><p>Show how you researched the problem, took photos, designed the gallery and tested your interactive idea.</p></div><div class="timeline"><div><b>01</b><h3>Research</h3><p>We chose our SDG and explored the challenge.</p></div><div><b>02</b><h3>Capture</h3><p>We took original photos and edited them.</p></div><div><b>03</b><h3>Build</h3><p>We created our website and interactive content.</p></div><div><b>04</b><h3>Share</h3><p>We tested the gallery and published it on GitHub Pages.</p></div></div><div class="video-panel"><div><span class="small-tag">OPTIONAL PROJECT VIDEO</span><h3>Behind the scenes</h3><p>Add a short video about how you created the project. Use a YouTube embed or your own optimized MP4 file.</p><p class="hint">✎ REPLACE: The placeholder with your video embed.</p></div><div class="video-placeholder"><span>▶</span><strong>Project video</strong><small>Insert your video here</small></div></div></section>
-<section class="section team-section" id="team"><div class="section-heading"><div><span class="kicker">05 / CONNECT</span><h2>Meet the <span class="accent">creators.</span></h2></div><p>Introduce both students, explain who contributed what, and include both introductory videos from Task 3.</p></div><div class="team-grid"><article class="student"><div class="avatar">A</div><span class="small-tag">STUDENT A</span><h3>Your Name</h3><p>Photography, SDG introduction and homepage design.</p><div class="video-slot">▶ Introduction video A <small>Replace with embedded video</small></div></article><article class="student"><div class="avatar second">B</div><span class="small-tag">STUDENT B</span><h3>Your Partner's Name</h3><p>Problem research, interactive quiz and photo editing.</p><div class="video-slot">▶ Introduction video B <small>Replace with embedded video</small></div></article></div></section>
-<section class="closing"><span class="kicker">06 / INSPIRE</span><h2>Every small action<br><em>makes a difference.</em></h2><p>What will you do today?</p><a class="btn btn-light" href="#home">Back to the top ↑</a><p class="hint">✎ REPLACE: Your own final message and call to action.</p></section></main><footer><div><strong>COIL / SDG LAB</strong><p>Student-created interactive gallery · 2026</p></div><p>Made by Student A & Student B · <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener noreferrer">UN Sustainable Development Goals ↗</a></p></footer>
-<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo viewer"><button id="lightbox-close" class="lightbox-close" aria-label="Close photo viewer">×</button><img id="lightbox-image" src="" alt=""><p id="lightbox-caption"></p></div><script src="gallery-data.js"></script><script src="script.js"></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Student COIL project about SDG 14: Life Below Water. Explore ocean pollution, marine biodiversity and solutions.">
+  <title>Our Ocean Story | COIL 2026</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <a class="brand" href="#home">
+    <span class="brand-mark">✳</span> COIL
+    <span class="brand-light"> / OCEAN LAB</span>
+  </a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="navlinks">☰ Menu</button>
+  <nav id="navlinks" aria-label="Main navigation">
+    <a href="#problem">The Problem</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#solutions">Take Action</a>
+    <a href="#journey">Our Journey</a>
+    <a href="#team">Our Team</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <span class="eyebrow">COIL PROJECT 2026 · STUDENT SHOWCASE</span>
+      <div class="sdg-chip">
+        SDG 14 <span>Life Below Water</span>
+      </div>
+      <h1>Protect our oceans.<br><em>Protect our future.</em></h1>
+      <p class="lead">
+        Our oceans are full of life, but plastic pollution, climate change
+        and human activities threaten marine ecosystems. Discover how small
+        actions can help protect life below water.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-light" href="#gallery">Explore the gallery ↗</a>
+        <a class="btn btn-outline" href="#solutions">Test your ocean knowledge →</a>
+      </div>
+      <p class="hero-hint">
+        Explore our photographs, learn about ocean pollution and discover
+        practical ways to protect marine life.
+      </p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <span class="art-orbit">14</span>
+      <span class="art-label">REDUCE<br>PROTECT<br>RESTORE</span>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section intro" id="problem">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">01 / UNDERSTAND</span>
+        <h2>The problem <span class="accent">beneath the surface.</span></h2>
+      </div>
+      <p>
+        Life below water is essential for biodiversity, food security,
+        climate regulation and the health of our planet.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <article class="problem-main">
+        <span class="small-tag">OUR CHALLENGE</span>
+        <h3>Our oceans need protection.</h3>
+        <p>
+          Marine ecosystems face serious threats from plastic pollution,
+          overfishing, habitat destruction and rising ocean temperatures.
+          Plastic waste can injure marine animals, while damaged habitats
+          make it harder for underwater species to survive.
+        </p>
+        <p>
+          Protecting the ocean requires action from governments, businesses
+          and individuals. Reducing single-use plastics, choosing sustainable
+          seafood and keeping beaches clean are practical ways to help.
+        </p>
+        <p class="hint">
+          Research local examples of marine pollution and add your own findings.
+          Support factual claims with reliable sources.
+        </p>
+        <a class="text-link"
+           href="https://sdgs.un.org/goals/goal14"
+           target="_blank" rel="noopener noreferrer">
+          Learn more about SDG 14 ↗
+        </a>
+      </article>
+
+      <aside class="fact-card">
+        <div class="fact-icon">🌊</div>
+        <h3>Every action matters.</h3>
+        <p>
+          Can you refuse a single-use plastic item, reuse a bottle,
+          or help keep a beach or river clean?
+        </p>
+        <span class="fact-bottom">OUR OCEAN, OUR RESPONSIBILITY</span>
+      </aside>
+    </div>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section class="section gallery-section" id="gallery">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">02 / DOCUMENT</span>
+        <h2>Through <span class="accent">our lens.</span></h2>
+      </div>
+      <p>
+        Explore our photographs about marine life, ocean pollution
+        and the actions people can take to protect the sea.
+      </p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter photographs">
+      <button class="filter active" data-filter="all" aria-pressed="true">All photos</button>
+      <button class="filter" data-filter="challenge" aria-pressed="false">Ocean challenges</button>
+      <button class="filter" data-filter="solutions" aria-pressed="false">Solutions</button>
+      <button class="filter" data-filter="behind" aria-pressed="false">Behind the scenes</button>
+    </div>
+
+    <div class="photo-grid" id="photo-grid"></div>
+
+    <p class="hint gallery-hint">
+      Add at least 12 original project photographs to
+      <code>assets/images/</code> and update <code>gallery-data.js</code>.
+      Use photographs you have taken yourselves whenever possible.
+    </p>
+  </section>
+
+  <!-- INTERACTIVE ACTIVITIES -->
+  <section class="section action-section" id="solutions">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">03 / ACT</span>
+        <h2>Turn awareness <span class="accent">into action.</span></h2>
+      </div>
+      <p>
+        Test your knowledge of the ocean and choose actions that can
+        help protect marine ecosystems.
+      </p>
+    </div>
+
+    <div class="action-grid">
+      <article class="interactive-card">
+        <span class="small-tag">INTERACTIVE QUIZ</span>
+        <h3>How well do you know our oceans?</h3>
+        <p>Answer three questions and discover your score.</p>
+
+        <div id="quiz" class="quiz">
+          <div class="quiz-meta">
+            <span id="quiz-progress">Question 1 of 3</span>
+            <span id="quiz-score">Score: 0</span>
+          </div>
+          <div class="progress-track">
+            <div id="quiz-bar"></div>
+          </div>
+          <h4 id="quiz-question"></h4>
+          <div id="quiz-options" class="quiz-options"></div>
+          <p id="quiz-feedback" class="feedback" aria-live="polite"></p>
+          <button id="quiz-next" class="btn btn-dark" hidden>
+            Next question →
+          </button>
+          <div id="quiz-finish" hidden>
+            <h4 id="quiz-result"></h4>
+            <button id="quiz-restart" class="btn btn-dark">Try again ↻</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="interactive-card survey-card">
+        <span class="small-tag">INSTANT SURVEY</span>
+        <h3>How will you protect the ocean?</h3>
+        <p>Choose one action to see the demo survey results.</p>
+
+        <fieldset id="poll">
+          <legend>What would you do first?</legend>
+          <label><input type="radio" name="poll" value="Plastic"> Reduce single-use plastics</label>
+          <label><input type="radio" name="poll" value="Cleanup"> Join a beach or river cleanup</label>
+          <label><input type="radio" name="poll" value="Awareness"> Raise awareness about ocean pollution</label>
+          <button id="poll-vote" class="btn btn-dark" type="button">
+            Submit my answer
+          </button>
+        </fieldset>
+
+        <div id="poll-results" hidden aria-live="polite">
+          <p class="results-note">Demo results (saved only in this browser)</p>
+          <div id="poll-bars"></div>
+          <button id="poll-reset" class="text-button" type="button">
+            Reset demo votes
+          </button>
+        </div>
+
+        <p class="hint">
+          These are local demo votes, not a shared survey. A backend is
+          needed to collect responses from different visitors.
+        </p>
+      </article>
+    </div>
+
+    <div class="tips">
+      <h3>Three ways to protect life below water</h3>
+      <div class="tip-grid">
+        <div>
+          <span>01</span>
+          <h4>Reduce plastic</h4>
+          <p>Choose reusable bags and bottles to reduce plastic waste.</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h4>Keep waterways clean</h4>
+          <p>Dispose of waste correctly and join local cleanup activities.</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h4>Make responsible choices</h4>
+          <p>Learn about sustainable seafood and support ocean protection.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR JOURNEY -->
+  <section class="section journey-section" id="journey">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">04 / CREATE</span>
+        <h2>Our <span class="accent">journey.</span></h2>
+      </div>
+      <p>
+        Discover how we researched SDG 14, documented environmental
+        challenges and developed our interactive website.
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div>
+        <b>01</b>
+        <h3>Research</h3>
+        <p>We explored SDG 14 and researched threats to marine ecosystems.</p>
+      </div>
+      <div>
+        <b>02</b>
+        <h3>Capture</h3>
+        <p>We collected and edited photographs related to ocean protection.</p>
+      </div>
+      <div>
+        <b>03</b>
+        <h3>Build</h3>
+        <p>We created our gallery, quiz and survey.</p>
+      </div>
+      <div>
+        <b>04</b>
+        <h3>Share</h3>
+        <p>We tested our website and prepared it for publication.</p>
+      </div>
+    </div>
+
+    <div class="video-panel">
+      <div>
+        <span class="small-tag">OPTIONAL PROJECT VIDEO</span>
+        <h3>Behind the scenes</h3>
+        <p>
+          Show how you researched the topic, took photographs
+          and created the project.
+        </p>
+        <p class="hint">Replace this placeholder with your project video.</p>
+      </div>
+      <div class="video-placeholder">
+        <span>▶</span>
+        <strong>Our ocean project</strong>
+        <small>Insert your video here</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR TEAM -->
+  <section class="section team-section" id="team">
+    <div class="section-heading">
+      <div>
+        <span class="kicker">05 / CONNECT</span>
+        <h2>Meet the <span class="accent">creators.</span></h2>
+      </div>
+      <p>
+        Meet the students behind the project and discover how we worked
+        together to raise awareness about ocean conservation.
+      </p>
+    </div>
+
+    <div class="team-grid">
+      <article class="student">
+        <div class="avatar">A</div>
+        <span class="small-tag">STUDENT A</span>
+        <h3>Your Name</h3>
+        <p>Ocean research, photography and homepage design.</p>
+        <div class="video-slot">
+          ▶ Introduction video A
+          <small>Replace with your embedded video</small>
+        </div>
+      </article>
+
+      <article class="student">
+        <div class="avatar second">B</div>
+        <span class="small-tag">STUDENT B</span>
+        <h3>Your Partner's Name</h3>
+        <p>Marine pollution research, photo editing and interactive quiz.</p>
+        <div class="video-slot">
+          ▶ Introduction video B
+          <small>Replace with your embedded video</small>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <span class="kicker">06 / INSPIRE</span>
+    <h2>A healthier ocean<br><em>means a healthier planet.</em></h2>
+    <p>Small changes today can help protect marine life tomorrow.</p>
+    <a class="btn btn-light" href="#home">Back to the top ↑</a>
+  </section>
+</main>
+
+<footer>
+  <div>
+    <strong>COIL / OCEAN LAB</strong>
+    <p>Student-created interactive gallery · 2026</p>
+  </div>
+  <p>
+    Made by Student A &amp; Student B ·
+    <a href="https://sdgs.un.org/goals/goal14"
+       target="_blank" rel="noopener noreferrer">
+      UN Sustainable Development Goal 14 ↗
+    </a>
+  </p>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog"
+     aria-modal="true" aria-label="Photo viewer">
+  <button id="lightbox-close" class="lightbox-close" aria-label="Close photo viewer">×</button>
+  <img id="lightbox-image" src="" alt="">
+  <p id="lightbox-caption"></p>
+</div>
+
+<script src="gallery-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
