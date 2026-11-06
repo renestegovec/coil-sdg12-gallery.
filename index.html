@@ -1073,7 +1073,71 @@ footer span {
   </div>
 
 </section>
+<!-- DOLPHIN SURVIVAL GAME -->
 
+<section class="dolphin-section" id="dolphin-game">
+
+  <div class="section-title">
+    <div class="tag">🐬 INFINITE SURVIVAL CHALLENGE</div>
+    <h2>Dolphin Survival</h2>
+    <p>
+      You're a dolphin swimming through a polluted ocean!
+      Dodge the rubbish, survive as long as possible
+      and beat your highest score.
+      How long can you survive?
+    </p>
+  </div>
+
+  <div class="dolphin-container">
+
+    <div class="dolphin-stats">
+
+      <div class="dolphin-stat">
+        <h3 id="dolphinScore">0</h3>
+        <p>🏆 SCORE</p>
+      </div>
+
+      <div class="dolphin-stat">
+        <h3 id="dolphinLives">❤️❤️❤️</h3>
+        <p>LIVES</p>
+      </div>
+
+      <div class="dolphin-stat">
+        <h3 id="dolphinBest">0</h3>
+        <p>⭐ BEST SCORE</p>
+      </div>
+
+    </div>
+
+    <canvas id="dolphinCanvas"
+      width="800"
+      height="420"
+      aria-label="Dolphin survival game">
+    </canvas>
+
+    <div class="dolphin-controls">
+      <button id="dolphinUp" aria-label="Swim up">⬆️</button>
+      <button id="dolphinDown" aria-label="Swim down">⬇️</button>
+    </div>
+
+    <p class="dolphin-info">
+      🎮 PC: Use W / S or ↑ / ↓ to swim.<br>
+      📱 Mobile: Hold the arrow buttons to move.<br>
+      🧴 Avoid rubbish! You have 3 lives.<br>
+      ⚡ The longer you survive, the faster it gets!
+    </p>
+
+    <button class="btn dolphin-start" id="dolphinStart">
+      🐬 START SURVIVAL
+    </button>
+
+    <p id="dolphinMessage" aria-live="polite">
+      Ready, dolphin? The ocean is waiting!
+    </p>
+
+  </div>
+
+</section>
 <div class="quote">
   <h2>"There is no Planet B. Protect our blue planet."</h2>
   <p>Small actions today. A better ocean tomorrow. 🌊</p>
