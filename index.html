@@ -9,7 +9,47 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  
+/* YOUTUBE VIDEO SECTION */
+
+.video-section {
+  background: #e0f8f6;
+  padding: 85px 9%;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.video-card {
+  background: white;
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px #00384b15;
+}
+
+.video-card iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 14px;
+  display: block;
+}
+
+.video-card h3 {
+  margin: 18px 5px 8px;
+  font-size: 17px;
+  color: #083b50;
+}
+
+@media(max-width: 800px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}  
 /* OCEAN QUIZ */
 
 .quiz-section {
