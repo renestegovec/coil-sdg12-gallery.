@@ -664,6 +664,51 @@ footer span {
      OCEAN CLEANUP MINIGAME
 ========================== -->
 
+<!-- OCEAN KNOWLEDGE QUIZ -->
+
+<section class="quiz-section" id="quiz">
+
+  <div class="section-title">
+    <div class="tag">🧠 TEST YOUR KNOWLEDGE</div>
+    <h2>Ocean Knowledge Quiz</h2>
+    <p>
+      How much do you really know about our oceans?
+      Answer 5 questions and become an Ocean Expert!
+    </p>
+  </div>
+
+  <div class="quiz-container">
+
+    <div class="quiz-top">
+      <span id="questionNumber">QUESTION 1 / 5</span>
+      <span id="quizScore">⭐ 0 POINTS</span>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progressFill"></div>
+    </div>
+
+    <h3 id="questionText">Loading question...</h3>
+
+    <div id="answerButtons" class="answer-buttons"></div>
+
+    <p id="quizFeedback" aria-live="polite"></p>
+
+    <button id="nextQuestion" class="btn" hidden>
+      NEXT QUESTION →
+    </button>
+
+    <div id="quizResult" hidden>
+      <h2 id="resultTitle"></h2>
+      <p id="resultText"></p>
+      <button id="restartQuiz" class="btn">
+        🔄 PLAY AGAIN
+      </button>
+    </div>
+
+  </div>
+</section>
+
 <section class="game-section" id="game">
 
   <div class="section-title">
