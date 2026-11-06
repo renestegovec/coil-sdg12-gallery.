@@ -1620,6 +1620,479 @@ document.getElementById("restartQuiz").addEventListener("click", () => {
 
 loadQuestion();
 
+/* ==========================
+   DOLPHIN SURVIVAL GAME
+   INFINITE MODE
+========================== */
+
+const dolphinCanvas = document.getElementById("dolphinCanvas");
+const dolphinCtx = dolphinCanvas.getContext("2d");
+
+const dolphinScoreDisplay = document.getElementById("dolphinScore");
+const dolphinLivesDisplay = document.getElementById("dolphinLives");
+const dolphinBestDisplay = document.getElementById("dolphinBest");
+const dolphinMessage = document.getElementById("dolphinMessage");
+const dolphinStart = document.getElementById("dolphinStart");
+
+const DW = 800;
+const DH = 420;
+
+let dolphin = {
+  x: 105,
+  y: 210,
+  width: 58,
+  height: 48,
+  speed: 5
+};
+
+let obstacles = [];
+let bubbles = [];
+
+let dolphinScore = 0;
+let dolphinLives = 3;
+let dolphinBest = Number(localStorage.getItem("dolphinBest") || 0);
+
+let dolphinRunning = false;
+let dolphinGameOver = false;
+
+let dolphinKeys = {
+  up: false,
+  down: false
+};
+
+let lastFrame = 0;
+let lastSpawn = 0;
+let lastScore = 0;
+let difficulty = 1;
+
+let animationFrame;
+
+dolphinBestDisplay.textContent = dolphinBest;
+
+// Rubbish found in the ocean
+const trashItems = [
+  "🧴",
+  "🥤",
+  "🛍️",
+  "🥡",
+  "🧃",
+  "🛞",
+  "🥫"
+];
+
+// Background bubbles
+for (let i = 0; i < 35; i++) {
+  bubbles.push({
+    x: Math.random() * DW,
+    y: Math.random() * DH,
+    size: 2 + Math.random() * 5,
+    speed: 0.5 + Math.random() * 2
+  });
+}
+
+// Keyboard controls
+document.addEventListener("keydown", function(e) {
+
+  if (!dolphinRunning) return;
+
+  if (["ArrowUp", "ArrowDown", "w", "W", "s", "S"].includes(e.key)) {
+    e.preventDefault();
+  }
+
+  if (e.key === "ArrowUp" || e.key.toLowerCase() === "w") {
+    dolphinKeys.up = true;
+  }
+
+  if (e.key === "ArrowDown" || e.key.toLowerCase() === "s") {
+    dolphinKeys.down = true;
+  }
+
+});
+
+document.addEventListener("keyup", function(e) {
+
+  if (e.key === "ArrowUp" || e.key.toLowerCase() === "w") {
+    dolphinKeys.up = false;
+  }
+
+  if (e.key === "ArrowDown" || e.key.toLowerCase() === "s") {
+    dolphinKeys.down = false;
+  }
+
+});
+
+window.addEventListener("blur", function() {
+  dolphinKeys.up = false;
+  dolphinKeys.down = false;
+});
+
+// Mobile touch controls
+function setupDolphinButton(id, direction) {
+
+  const button = document.getElementById(id);
+
+  button.addEventListener("pointerdown", function(e) {
+    e.preventDefault();
+    dolphinKeys[direction] = true;
+  });
+
+  ["pointerup", "pointerleave", "pointercancel"].forEach(event => {
+    button.addEventListener(event, function() {
+      dolphinKeys[direction] = false;
+    });
+  });
+
+}
+
+setupDolphinButton("dolphinUp", "up");
+setupDolphinButton("dolphinDown", "down");
+
+// Draw ocean background
+function drawDolphinOcean() {
+
+  const gradient = dolphinCtx.createLinearGradient(0, 0, 0, DH);
+
+  gradient.addColorStop(0, "#079dc1");
+  gradient.addColorStop(0.55, "#006b96");
+  gradient.addColorStop(1, "#003b65");
+
+  dolphinCtx.fillStyle = gradient;
+  dolphinCtx.fillRect(0, 0, DW, DH);
+
+  // Ocean light rays
+  dolphinCtx.fillStyle = "#ffffff0a";
+
+  for (let i = 0; i < 7; i++) {
+    dolphinCtx.beginPath();
+    dolphinCtx.moveTo(i * 140, 0);
+    dolphinCtx.lineTo(i * 140 + 75, DH);
+    dolphinCtx.lineTo(i * 140 + 115, DH);
+    dolphinCtx.lineTo(i * 140 + 40, 0);
+    dolphinCtx.fill();
+  }
+
+  // Bubbles
+  bubbles.forEach(b => {
+
+    dolphinCtx.beginPath();
+
+    dolphinCtx.arc(b.x, b.y, b.size, 0, Math.PI * 2);
+
+    dolphinCtx.strokeStyle = "#ffffff55";
+    dolphinCtx.lineWidth = 2;
+    dolphinCtx.stroke();
+
+    if (dolphinRunning) {
+      b.x -= b.speed;
+      if (b.x < 0) {
+        b.x = DW;
+        b.y = Math.random() * DH;
+      }
+    }
+
+  });
+
+  // Ocean floor
+  dolphinCtx.fillStyle = "#003e57";
+  dolphinCtx.fillRect(0, DH - 18, DW, 18);
+
+  dolphinCtx.fillStyle = "#52e5d0";
+
+  for (let i = 0; i < DW; i += 45) {
+    dolphinCtx.fillRect(i, DH - 18, 22, 3);
+  }
+
+}
+
+// Draw dolphin
+function drawDolphin() {
+
+  dolphinCtx.save();
+
+  dolphinCtx.translate(dolphin.x, dolphin.y);
+
+  // Dolphin body
+  dolphinCtx.font = "55px Arial";
+  dolphinCtx.textAlign = "center";
+  dolphinCtx.textBaseline = "middle";
+
+  dolphinCtx.fillText("🐬", 0, 0);
+
+  dolphinCtx.restore();
+
+}
+
+// Spawn rubbish
+function spawnDolphinTrash() {
+
+  const size = 27 + Math.random() * 13;
+
+  obstacles.push({
+    x: DW + 40,
+    y: 35 + Math.random() * (DH - 90),
+    size: size,
+    emoji: trashItems[
+      Math.floor(Math.random() * trashItems.length)
+    ],
+    speed: (3 + Math.random() * 2) * difficulty,
+    passed: false
+  });
+
+}
+
+// Draw rubbish
+function drawDolphinTrash() {
+
+  obstacles.forEach(item => {
+
+    dolphinCtx.font = `${item.size}px Arial`;
+    dolphinCtx.textAlign = "center";
+    dolphinCtx.textBaseline = "middle";
+
+    dolphinCtx.fillText(
+      item.emoji,
+      item.x,
+      item.y
+    );
+
+  });
+
+}
+
+// Collision detection
+function dolphinCollision(item) {
+
+  const dx = dolphin.x - item.x;
+  const dy = dolphin.y - item.y;
+
+  const distance = Math.sqrt(dx * dx + dy * dy);
+
+  return distance < 40 + item.size * 0.35;
+
+}
+
+// Update game
+function updateDolphinGame(delta) {
+
+  const step = Math.min(delta / 16.67, 2);
+
+  // Dolphin movement
+  if (dolphinKeys.up) {
+    dolphin.y -= dolphin.speed * step;
+  }
+
+  if (dolphinKeys.down) {
+    dolphin.y += dolphin.speed * step;
+  }
+
+  // Keep dolphin inside the ocean
+  dolphin.y = Math.max(35, Math.min(DH - 45, dolphin.y));
+
+  // Increase difficulty over time
+  difficulty = 1 + Math.floor(dolphinScore / 100) * 0.18;
+
+  const now = performance.now();
+
+  // Spawn faster as difficulty increases
+  const spawnDelay = Math.max(300, 1050 - dolphinScore * 2);
+
+  if (now - lastSpawn > spawnDelay) {
+    spawnDolphinTrash();
+    lastSpawn = now;
+  }
+
+  // Move obstacles and check collisions
+  obstacles.forEach(item => {
+
+    item.x -= item.speed * step;
+
+    if (!item.passed && dolphinCollision(item)) {
+
+      item.passed = true;
+      item.hit = true;
+
+      dolphinLives--;
+
+      dolphinLivesDisplay.textContent =
+        "❤️".repeat(dolphinLives) +
+        "🖤".repeat(3 - dolphinLives);
+
+      dolphinMessage.textContent =
+        "💥 You hit rubbish! Be careful!";
+
+      // Brief collision flash
+      dolphinCanvas.style.borderColor = "#ff7777";
+
+      setTimeout(() => {
+        dolphinCanvas.style.borderColor = "#52e5d0";
+      }, 180);
+
+      if (dolphinLives <= 0) {
+        endDolphinGame();
+      }
+
+    }
+
+    // Award points for surviving an obstacle
+    if (!item.passed && item.x < dolphin.x - 40) {
+      item.passed = true;
+
+      if (!item.hit) {
+        dolphinScore += 10;
+        dolphinScoreDisplay.textContent = dolphinScore;
+      }
+    }
+
+  });
+
+  obstacles = obstacles.filter(item => item.x > -80);
+
+  // Update best score
+  if (dolphinScore > dolphinBest) {
+    dolphinBest = dolphinScore;
+    dolphinBestDisplay.textContent = dolphinBest;
+
+    localStorage.setItem("dolphinBest", dolphinBest);
+  }
+
+  // Update message as difficulty increases
+  if (dolphinScore >= 300 && dolphinScore % 100 === 0 &&
+      now - lastScore > 800) {
+
+    dolphinMessage.textContent = "🔥 INSANE SPEED! KEEP DODGING!";
+    lastScore = now;
+
+  }
+}
+
+// Main game loop
+function dolphinLoop(timestamp) {
+
+  if (!dolphinRunning) return;
+
+  const delta = lastFrame ? timestamp - lastFrame : 16.67;
+  lastFrame = timestamp;
+
+  updateDolphinGame(delta);
+
+  drawDolphinOcean();
+  drawDolphinTrash();
+  drawDolphin();
+
+  if (dolphinRunning) {
+    animationFrame = requestAnimationFrame(dolphinLoop);
+  }
+
+}
+
+// Start game
+function startDolphinGame() {
+
+  if (dolphinRunning) return;
+
+  cancelAnimationFrame(animationFrame);
+
+  dolphinScore = 0;
+  dolphinLives = 3;
+  difficulty = 1;
+
+  obstacles = [];
+
+  dolphin.y = 210;
+
+  dolphinKeys.up = false;
+  dolphinKeys.down = false;
+
+  dolphinScoreDisplay.textContent = "0";
+  dolphinLivesDisplay.textContent = "❤️❤️❤️";
+
+  dolphinMessage.textContent =
+    "🐬 Swim fast! Avoid all the rubbish!";
+
+  dolphinStart.textContent = "🌊 PLAYING...";
+
+  dolphinRunning = true;
+  dolphinGameOver = false;
+
+  lastFrame = 0;
+  lastSpawn = performance.now();
+  lastScore = 0;
+
+  dolphinLoop(performance.now());
+
+}
+
+// End game
+function endDolphinGame() {
+
+  dolphinRunning = false;
+  dolphinGameOver = true;
+
+  cancelAnimationFrame(animationFrame);
+
+  dolphinKeys.up = false;
+  dolphinKeys.down = false;
+
+  drawDolphinOcean();
+  drawDolphinTrash();
+  drawDolphin();
+
+  dolphinCtx.fillStyle = "#001d35bb";
+  dolphinCtx.fillRect(0, 0, DW, DH);
+
+  dolphinCtx.textAlign = "center";
+
+  dolphinCtx.fillStyle = "#52e5d0";
+  dolphinCtx.font = "bold 42px Arial";
+  dolphinCtx.fillText("GAME OVER!", DW / 2, 175);
+
+  dolphinCtx.fillStyle = "white";
+  dolphinCtx.font = "bold 23px Arial";
+  dolphinCtx.fillText(
+    "Your score: " + dolphinScore,
+    DW / 2,
+    225
+  );
+
+  dolphinCtx.font = "18px Arial";
+  dolphinCtx.fillText(
+    "Try again and beat your record!",
+    DW / 2,
+    265
+  );
+
+  dolphinStart.textContent = "🔄 PLAY AGAIN";
+
+  dolphinMessage.textContent =
+    "💔 Your dolphin ran out of lives! Final score: " +
+    dolphinScore + " points.";
+
+}
+
+// Start button
+dolphinStart.addEventListener("click", startDolphinGame);
+
+// Initial screen
+drawDolphinOcean();
+
+dolphinCtx.font = "bold 30px Arial";
+dolphinCtx.textAlign = "center";
+dolphinCtx.fillStyle = "white";
+
+dolphinCtx.fillText(
+  "🐬 READY TO SURVIVE?",
+  DW / 2,
+  DH / 2 - 20
+);
+
+dolphinCtx.font = "18px Arial";
+
+dolphinCtx.fillText(
+  "Press START SURVIVAL to begin!",
+  DW / 2,
+  DH / 2 + 25
+);
+
 </script>
 
 </body>
