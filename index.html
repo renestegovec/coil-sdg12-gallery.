@@ -106,6 +106,9 @@ h1 span {
   text-decoration: none;
   font-weight: 700;
   transition: .3s;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .btn:hover {
@@ -270,6 +273,159 @@ section {
   line-height: 1.8;
 }
 
+/* ==========================
+   OCEAN CLEANUP MINIGAME
+========================== */
+
+.game-section {
+  background: linear-gradient(180deg, #e0f8f6, #f4fbff);
+}
+
+.game-container {
+  max-width: 850px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: 0 12px 40px #00384b15;
+}
+
+.game-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.game-stat {
+  background: #e0f8f6;
+  padding: 15px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.game-stat h3 {
+  font-size: 27px;
+  color: #00a99d;
+}
+
+.game-stat p {
+  font-size: 12px;
+  color: #607c88;
+  font-weight: 600;
+}
+
+.game-instructions {
+  text-align: center;
+  color: #607c88;
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.game-board {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 3px solid #52e5d0;
+  background:
+    linear-gradient(#007da0aa, #003d65cc),
+    url('https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=1200&q=85')
+    center/cover;
+}
+
+.game-board::before {
+  content: "🌊 OCEAN CLEANUP 🌊";
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #ffffffa0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+.game-item {
+  position: absolute;
+  top: -60px;
+  background: #ffffffdd;
+  border: none;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  font-size: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px #001e35aa;
+  animation: fall linear forwards;
+  z-index: 2;
+  transition: transform .15s;
+}
+
+.game-item:hover {
+  transform: scale(1.2);
+}
+
+.game-item:focus-visible {
+  outline: 3px solid #52e5d0;
+  outline-offset: 3px;
+}
+
+@keyframes fall {
+  from {
+    top: -65px;
+  }
+  to {
+    top: 430px;
+  }
+}
+
+.game-controls {
+  text-align: center;
+  margin-top: 22px;
+}
+
+#startGame {
+  font-size: 16px;
+  padding: 15px 35px;
+}
+
+#gameMessage {
+  margin-top: 15px;
+  font-weight: 600;
+  color: #00a99d;
+  min-height: 28px;
+  font-size: 15px;
+}
+
+.game-legend {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+  color: #607c88;
+  font-size: 13px;
+}
+
+.game-legend span {
+  font-weight: 600;
+}
+
+.game-tip {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #607c88;
+}
+
 .quote {
   text-align: center;
   color: white;
@@ -343,6 +499,38 @@ footer span {
   .about img {
     height: 300px;
   }
+
+  .game-container {
+    padding: 18px;
+  }
+
+  .game-board {
+    height: 350px;
+  }
+
+  .game-info {
+    gap: 8px;
+  }
+
+  .game-stat {
+    padding: 12px 5px;
+  }
+
+  .game-stat h3 {
+    font-size: 22px;
+  }
+
+  .game-legend {
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 </style>
 </head>
@@ -354,6 +542,7 @@ footer span {
   <div>
     <a href="#about">About</a>
     <a href="#problems">Problems</a>
+    <a href="#game">Minigame 🎮</a>
     <a href="#help">How to help</a>
   </div>
 </nav>
@@ -471,6 +660,78 @@ footer span {
   </div>
 </section>
 
+<!-- ==========================
+     OCEAN CLEANUP MINIGAME
+========================== -->
+
+<section class="game-section" id="game">
+
+  <div class="section-title">
+    <div class="tag">🎮 INTERACTIVE CHALLENGE</div>
+    <h2>Ocean Cleanup Challenge</h2>
+    <p>
+      The ocean needs your help! Catch the floating plastic
+      before time runs out. But be careful — don't catch the
+      innocent sea animals!
+    </p>
+  </div>
+
+  <div class="game-container">
+
+    <div class="game-info">
+
+      <div class="game-stat">
+        <h3 id="score">0</h3>
+        <p>⭐ SCORE</p>
+      </div>
+
+      <div class="game-stat">
+        <h3 id="timer">30</h3>
+        <p>⏱️ SECONDS</p>
+      </div>
+
+      <div class="game-stat">
+        <h3 id="bestScore">0</h3>
+        <p>🏆 BEST SCORE</p>
+      </div>
+
+    </div>
+
+    <p class="game-instructions">
+      Click or tap the plastic rubbish to collect it.
+      Avoid clicking sea animals!
+    </p>
+
+    <div class="game-board" id="gameBoard"
+         aria-label="Ocean cleanup game area">
+
+    </div>
+
+    <div class="game-legend">
+      <span>🧴 Plastic: +10 points</span>
+      <span>🥤 Plastic: +10 points</span>
+      <span>🐢 Sea animals: -10 points</span>
+    </div>
+
+    <div class="game-controls">
+      <button class="btn" id="startGame">
+        🌊 START GAME
+      </button>
+
+      <p id="gameMessage" aria-live="polite">
+        Ready to save the ocean? Press START GAME!
+      </p>
+    </div>
+
+    <p class="game-tip">
+      💡 Did you know? Millions of tonnes of plastic enter
+      aquatic ecosystems every year. Every piece you collect matters!
+    </p>
+
+  </div>
+
+</section>
+
 <div class="quote">
   <h2>"There is no Planet B. Protect our blue planet."</h2>
   <p>Small actions today. A better ocean tomorrow. 🌊</p>
@@ -521,6 +782,175 @@ footer span {
   <p>Protect the ocean. Protect our future. 🌊</p>
 </footer>
 
+<script>
+
+/* ==========================
+   OCEAN CLEANUP GAME LOGIC
+========================== */
+
+const gameBoard = document.getElementById("gameBoard");
+const scoreDisplay = document.getElementById("score");
+const timerDisplay = document.getElementById("timer");
+const bestDisplay = document.getElementById("bestScore");
+const gameMessage = document.getElementById("gameMessage");
+const startButton = document.getElementById("startGame");
+
+let score = 0;
+let timeLeft = 30;
+let bestScore = 0;
+let gameRunning = false;
+
+let spawnInterval;
+let timerInterval;
+
+// Plastic gives points.
+// Sea animals should be avoided.
+
+const plasticItems = ["🧴", "🥤", "🛍️", "🧃", "🥡"];
+
+const seaAnimals = ["🐢", "🐠", "🐬", "🦀", "🐙"];
+
+function updateScore() {
+  scoreDisplay.textContent = score;
+
+  if (score > bestScore) {
+    bestScore = score;
+    bestDisplay.textContent = bestScore;
+  }
+}
+
+function spawnItem() {
+
+  if (!gameRunning) return;
+
+  const item = document.createElement("button");
+
+  item.type = "button";
+  item.classList.add("game-item");
+
+  const isPlastic = Math.random() < 0.7;
+
+  if (isPlastic) {
+    item.textContent =
+      plasticItems[Math.floor(Math.random() * plasticItems.length)];
+
+    item.setAttribute("aria-label", "Collect plastic rubbish");
+
+  } else {
+    item.textContent =
+      seaAnimals[Math.floor(Math.random() * seaAnimals.length)];
+
+    item.setAttribute("aria-label", "Avoid sea animal");
+  }
+
+  const maxPosition = Math.max(0, gameBoard.clientWidth - 65);
+
+  item.style.left =
+    Math.floor(Math.random() * maxPosition) + "px";
+
+  const fallSpeed = 3.5 + Math.random() * 1.5;
+
+  item.style.animationDuration = fallSpeed + "s";
+
+  item.addEventListener("click", function() {
+
+    if (!gameRunning) return;
+
+    if (isPlastic) {
+
+      score += 10;
+
+      gameMessage.textContent =
+        "Great job! You removed plastic from the ocean! 🌊";
+
+    } else {
+
+      score = Math.max(0, score - 10);
+
+      gameMessage.textContent =
+        "Oops! That was a sea animal! Protect marine life! 🐢";
+
+    }
+
+    updateScore();
+
+    item.remove();
+
+  });
+
+  item.addEventListener("animationend", function() {
+    item.remove();
+  });
+
+  gameBoard.appendChild(item);
+}
+
+function endGame() {
+
+  gameRunning = false;
+
+  clearInterval(spawnInterval);
+  clearInterval(timerInterval);
+
+  gameBoard.innerHTML = "";
+
+  startButton.textContent = "🔄 PLAY AGAIN";
+
+  gameMessage.textContent =
+    "⏰ Time's up! You collected " + score +
+    " points. Thanks for helping the ocean! 🌊";
+
+  if (score >= 100) {
+    gameMessage.textContent +=
+      " Amazing work, Ocean Hero! 🏆";
+  }
+
+}
+
+function startGame() {
+
+  if (gameRunning) return;
+
+  score = 0;
+  timeLeft = 30;
+
+  gameRunning = true;
+
+  scoreDisplay.textContent = score;
+  timerDisplay.textContent = timeLeft;
+
+  gameBoard.innerHTML = "";
+
+  startButton.textContent = "🌊 GAME IN PROGRESS...";
+
+  gameMessage.textContent =
+    "Go go go! Save the ocean! 🐬";
+
+  // Spawn rubbish and sea animals.
+
+  spawnItem();
+
+  spawnInterval = setInterval(spawnItem, 750);
+
+  // Countdown timer.
+
+  timerInterval = setInterval(function() {
+
+    timeLeft--;
+
+    timerDisplay.textContent = timeLeft;
+
+    if (timeLeft <= 0) {
+      endGame();
+    }
+
+  }, 1000);
+
+}
+
+startButton.addEventListener("click", startGame);
+
+</script>
+
 </body>
 </html>
-
