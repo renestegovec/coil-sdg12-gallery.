@@ -9,6 +9,137 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+  
+/* OCEAN QUIZ */
+
+.quiz-section {
+  background: #f4fbff;
+}
+
+.quiz-container {
+  max-width: 750px;
+  margin: auto;
+  background: white;
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 12px 40px #00384b15;
+}
+
+.quiz-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #00a99d;
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  height: 9px;
+  background: #e0f8f6;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+#progressFill {
+  height: 100%;
+  width: 20%;
+  background: #52e5d0;
+  border-radius: 20px;
+  transition: width .3s;
+}
+
+.quiz-container h3 {
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.answer-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.answer-btn {
+  padding: 17px;
+  border: 2px solid #d7eeef;
+  background: #f4fbff;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #083b50;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.answer-btn:hover:not(:disabled) {
+  border-color: #00a99d;
+  background: #e0f8f6;
+  transform: translateY(-3px);
+}
+
+.answer-btn:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.answer-btn.correct {
+  background: #d7f8e7;
+  border-color: #20b878;
+}
+
+.answer-btn.wrong {
+  background: #ffe4e4;
+  border-color: #ed7777;
+}
+
+#quizFeedback {
+  margin: 20px 0;
+  min-height: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+#nextQuestion {
+  margin-top: 5px;
+}
+
+#quizResult {
+  text-align: center;
+  padding: 25px 5px;
+}
+
+#quizResult h2 {
+  font-size: 32px;
+  color: #00a99d;
+  margin-bottom: 15px;
+}
+
+#quizResult p {
+  color: #607c88;
+  margin-bottom: 25px;
+  line-height: 1.8;
+}
+
+@media(max-width: 600px) {
+  .quiz-container {
+    padding: 22px;
+  }
+
+  .answer-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-container h3 {
+    font-size: 19px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -994,6 +1125,224 @@ function startGame() {
 }
 
 startButton.addEventListener("click", startGame);
+
+/* ==========================
+   OCEAN KNOWLEDGE QUIZ
+========================== */
+
+const questions = [
+  {
+    question: "What is SDG 14 mainly about?",
+    answers: [
+      "Protecting life below water",
+      "Building more cities",
+      "Ending world hunger",
+      "Protecting forests"
+    ],
+    correct: 0,
+    explanation: "SDG 14 focuses on conserving and sustainably using oceans, seas and marine resources."
+  },
+  {
+    question: "What can happen when plastic enters the ocean?",
+    answers: [
+      "It disappears immediately",
+      "Marine animals can eat it",
+      "It makes the water cleaner",
+      "It creates more coral reefs"
+    ],
+    correct: 1,
+    explanation: "Sea animals can mistake plastic for food, which can seriously harm them."
+  },
+  {
+    question: "Which action helps protect marine life?",
+    answers: [
+      "Throwing rubbish into rivers",
+      "Using more plastic bags",
+      "Using reusable water bottles",
+      "Leaving rubbish on beaches"
+    ],
+    correct: 2,
+    explanation: "Reusable bottles reduce single-use plastic waste that could reach the ocean."
+  },
+  {
+    question: "Why are coral reefs important?",
+    answers: [
+      "They produce plastic",
+      "They provide habitats for marine animals",
+      "They make oceans warmer",
+      "They prevent all ocean pollution"
+    ],
+    correct: 1,
+    explanation: "Coral reefs provide food, shelter and habitats for many marine species."
+  },
+  {
+    question: "What is one major cause of ocean warming?",
+    answers: [
+      "Greenhouse gas emissions",
+      "Recycling plastic",
+      "Cleaning beaches",
+      "Using reusable bags"
+    ],
+    correct: 0,
+    explanation: "Greenhouse gases trap heat in Earth's climate system, and the ocean absorbs much of this excess heat."
+  }
+];
+
+let currentQuestion = 0;
+let quizPoints = 0;
+let quizAnswered = false;
+
+const questionNumber = document.getElementById("questionNumber");
+const quizScore = document.getElementById("quizScore");
+const questionText = document.getElementById("questionText");
+const answerButtons = document.getElementById("answerButtons");
+const quizFeedback = document.getElementById("quizFeedback");
+const nextQuestion = document.getElementById("nextQuestion");
+const progressFill = document.getElementById("progressFill");
+const quizResult = document.getElementById("quizResult");
+
+function loadQuestion() {
+
+  quizAnswered = false;
+
+  const q = questions[currentQuestion];
+
+  questionNumber.textContent =
+    `QUESTION ${currentQuestion + 1} / ${questions.length}`;
+
+  quizScore.textContent = `⭐ ${quizPoints} POINTS`;
+
+  questionText.textContent = q.question;
+
+  progressFill.style.width =
+    `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+  answerButtons.innerHTML = "";
+  quizFeedback.textContent = "";
+  nextQuestion.hidden = true;
+
+  q.answers.forEach((answer, index) => {
+
+    const button = document.createElement("button");
+
+    button.className = "answer-btn";
+    button.textContent =
+      `${String.fromCharCode(65 + index)}. ${answer}`;
+
+    button.addEventListener("click", () => checkAnswer(index));
+
+    answerButtons.appendChild(button);
+
+  });
+}
+
+function checkAnswer(selected) {
+
+  if (quizAnswered) return;
+
+  quizAnswered = true;
+
+  const q = questions[currentQuestion];
+  const buttons = answerButtons.querySelectorAll("button");
+
+  buttons.forEach((button, index) => {
+
+    button.disabled = true;
+
+    if (index === q.correct) {
+      button.classList.add("correct");
+    }
+
+    if (index === selected && selected !== q.correct) {
+      button.classList.add("wrong");
+    }
+
+  });
+
+  if (selected === q.correct) {
+
+    quizPoints += 20;
+
+    quizFeedback.textContent =
+      "✅ Correct! " + q.explanation;
+
+    quizFeedback.style.color = "#00a477";
+
+  } else {
+
+    quizFeedback.textContent =
+      "❌ Not quite! " + q.explanation;
+
+    quizFeedback.style.color = "#d45b5b";
+
+  }
+
+  quizScore.textContent = `⭐ ${quizPoints} POINTS`;
+
+  nextQuestion.hidden = false;
+
+  nextQuestion.textContent =
+    currentQuestion === questions.length - 1
+      ? "SEE MY RESULTS 🏆"
+      : "NEXT QUESTION →";
+
+}
+
+function showQuizResult() {
+
+  questionNumber.textContent = "QUIZ COMPLETED";
+
+  questionText.hidden = true;
+  answerButtons.hidden = true;
+  quizFeedback.hidden = true;
+  nextQuestion.hidden = true;
+
+  quizResult.hidden = false;
+
+  document.getElementById("resultTitle").textContent =
+    quizPoints === 100
+      ? "🏆 OCEAN GENIUS!"
+      : quizPoints >= 60
+        ? "🐬 GREAT JOB!"
+        : "🌊 KEEP LEARNING!";
+
+  document.getElementById("resultText").textContent =
+    `You scored ${quizPoints} out of 100 points! ` +
+    (quizPoints === 100
+      ? "You are a true ocean expert!"
+      : "Every new thing you learn helps protect our oceans!");
+
+  progressFill.style.width = "100%";
+}
+
+nextQuestion.addEventListener("click", () => {
+
+  currentQuestion++;
+
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    showQuizResult();
+  }
+
+});
+
+document.getElementById("restartQuiz").addEventListener("click", () => {
+
+  currentQuestion = 0;
+  quizPoints = 0;
+
+  questionText.hidden = false;
+  answerButtons.hidden = false;
+  quizFeedback.hidden = false;
+
+  quizResult.hidden = true;
+
+  loadQuestion();
+
+});
+
+loadQuestion();
 
 </script>
 
