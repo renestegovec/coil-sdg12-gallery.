@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+  
 /* YOUTUBE VIDEO SECTION */
 
 .video-section {
@@ -703,6 +704,130 @@ footer span {
     transition-duration: 0.01ms !important;
   }
 }
+  
+/* ==========================
+   DOLPHIN SURVIVAL GAME
+========================== */
+
+.dolphin-section {
+  background: linear-gradient(180deg, #052d46, #007da0);
+  color: white;
+}
+
+.dolphin-section .section-title p {
+  color: #d0f5ff;
+}
+
+.dolphin-section .tag {
+  background: #52e5d0;
+}
+
+.dolphin-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 25px;
+  background: #ffffff12;
+  border: 1px solid #ffffff30;
+  box-shadow: 0 15px 40px #001c3580;
+}
+
+.dolphin-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.dolphin-stat {
+  background: #ffffff15;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+}
+
+.dolphin-stat h3 {
+  color: #52e5d0;
+  font-size: 27px;
+}
+
+.dolphin-stat p {
+  font-size: 12px;
+  color: #d0f5ff;
+}
+
+#dolphinCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 800 / 420;
+  background: #007da0;
+  border: 3px solid #52e5d0;
+  border-radius: 18px;
+  touch-action: none;
+}
+
+.dolphin-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.dolphin-controls button {
+  width: 65px;
+  height: 55px;
+  border: 2px solid #52e5d0;
+  background: #ffffff18;
+  color: white;
+  font-size: 25px;
+  border-radius: 14px;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+}
+
+.dolphin-controls button:active {
+  background: #52e5d0;
+  color: #052d46;
+}
+
+.dolphin-info {
+  text-align: center;
+  color: #d0f5ff;
+  line-height: 1.8;
+  font-size: 13px;
+  margin: 18px 0;
+}
+
+.dolphin-start {
+  display: block;
+  margin: 20px auto 0;
+}
+
+#dolphinMessage {
+  text-align: center;
+  color: #52e5d0;
+  font-weight: 700;
+  margin-top: 15px;
+  min-height: 28px;
+}
+
+@media(max-width: 600px) {
+  .dolphin-container {
+    padding: 14px;
+  }
+
+  .dolphin-stat {
+    padding: 12px 5px;
+  }
+
+  .dolphin-stat h3 {
+    font-size: 21px;
+  }
+}
+
 </style>
 </head>
 
